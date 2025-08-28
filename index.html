@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poctivá flotila - Od řidiče pro řidiče | Jan Václavík</title>
-    <meta name="description" content="Férové podmínky pro řidiče Bolt. Výplata každé úterý, čistá mzda, zázemí 24/7 v Ostravě. Založeno řidičem Janem Václavíkem.">
+    <meta name="description" content="Jediná flotila, která vám připlácí! Bonus 500-1000 Kč týdně, účetnictví zdarma, zázemí 24/7 v Ostravě. Založeno řidičem Janem Václavíkem.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -321,6 +321,150 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 500;
+        }
+        
+        /* Bonus Banner Section - Premium Design */
+        #bonus-banner {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #bonus-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        #bonus-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 165, 0, 0.08) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite 2s;
+        }
+        
+        .bonus-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bonus-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        #bonus-banner h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .bonus-highlight {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bonus-amounts {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .bonus-card {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            animation: fadeInUp 1.2s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .bonus-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 215, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .bonus-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .bonus-condition {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .bonus-extra {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .bonus-extra-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bonus-extra-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+        
+        .bonus-comparison {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 0, 0, 0.05);
+            border-left: 3px solid rgba(255, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .bonus-comparison span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-style: italic;
         }
         
         /* Section Base */
@@ -762,6 +906,17 @@
             stroke: var(--gold);
         }
         
+        .base-location a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .base-location a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        
         .base-features {
             display: grid;
             gap: 1rem;
@@ -859,17 +1014,29 @@
         }
         
         .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             color: var(--dark);
             font-weight: 600;
+        }
+        
+        .contact-group {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .contact-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
             gap: 1.2rem;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.2rem;
             font-size: 1.05rem;
         }
         
@@ -905,7 +1072,7 @@
             padding: 1rem;
             border-radius: 20px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.08);
-            height: 450px;
+            height: 550px;
         }
         
         .map-container iframe {
@@ -1215,6 +1382,39 @@
         </div>
     </section>
 
+    <!-- New Bonus Banner Section -->
+    <section id="bonus-banner">
+        <div class="container">
+            <div class="bonus-content">
+                <span class="bonus-badge">UNIKÁTNÍ BONUS SYSTÉM</span>
+                <h2>Jediná flotila, která vám <span class="bonus-highlight">PŘIPLÁCÍ</span> za to, že jezdíte!</h2>
+                
+                <div class="bonus-amounts">
+                    <div class="bonus-card">
+                        <div class="bonus-amount">500 Kč</div>
+                        <div class="bonus-condition">týdně do 15 000 Kč obratu</div>
+                    </div>
+                    <div class="bonus-card">
+                        <div class="bonus-amount">1000 Kč</div>
+                        <div class="bonus-condition">týdně nad 15 000 Kč obratu</div>
+                    </div>
+                </div>
+                
+                <div class="bonus-extra">
+                    <div class="bonus-extra-title">+ BONUS NAVÍC</div>
+                    <div class="bonus-extra-text">
+                        Účetnictví, daňové přiznání a kompletní administrativa úplně ZDARMA!<br>
+                        Místní řidiči od 1.10.2025 dispečerna 24/7
+                    </div>
+                    
+                    <div class="bonus-comparison">
+                        <span>Zatímco ostatní flotily si berou 20-30% z vašich tržeb, my vám naopak přidáváme peníze!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- About Section -->
 <section id="about" class="scroll-animate">
     <div class="container">
@@ -1259,11 +1459,11 @@
     </div>
 </section>
 
-<!-- Difference Section -->
+<!-- Difference Section with NEW card -->
 <section id="difference" class="scroll-animate">
     <div class="container">
         <h2 class="section-title">Neschováváme se. Nestydíme se. Nelžeme.</h2>
-        <p class="section-subtitle">5 důvodů, proč jsou řidiči s námi spokojení</p>
+        <p class="section-subtitle">6 důvodů, proč jsou řidiči s námi spokojení</p>
         <div class="difference-grid">
             <div class="diff-card">
                 <div class="diff-icon">
@@ -1298,8 +1498,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
                 </div>
-                <h3 class="diff-title">Centrála 24/7 v centru Ostravy</h3>
-                <p class="diff-text">WC, kuchyňka, káva zdarma, pohovka, PC. Kousek od Městské nemocnice.</p>
+                <h3 class="diff-title">Centrála 24/7 v centru Ostravy (od 1.10.2025)</h3>
+                <p class="diff-text">WC, kuchyňka, káva zdarma, pohovka, PC. Rekonstruujeme pro vás!</p>
             </div>
             <div class="diff-card">
                 <div class="diff-icon">
@@ -1309,6 +1509,15 @@
                 </div>
                 <h3 class="diff-title">Nehoda? Jsme tam s vámi</h3>
                 <p class="diff-text">Nenecháme vás ve štychu. Řešíme vše na místě, společně.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="diff-title">Nevydělávám na řidičích</h3>
+                <p class="diff-text">Žádná procenta z tržeb! Platíte jen 500-1000 Kč paušál týdně. Nejsme chamtiví.</p>
             </div>
         </div>
     </div>
@@ -1322,13 +1531,13 @@
         <div class="process-container">
             <div class="central-card">
                 <div class="central-overlay">
-                    <h3>Naše centrála v Ostravě</h3>
+                    <h3>Naše centrála v Ostravě (od 1.10.2025)</h3>
                     <p style="color: var(--gold); margin-bottom: 1.5rem;">
                         <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        Kousek od centra, u Městské nemocnice
+                        Červeného kříže 4, Moravská Ostrava
                     </p>
                     <div class="central-features">
                         <div class="feature-item">
@@ -1479,26 +1688,28 @@
             <p class="section-subtitle">Přijďte se podívat do našeho zázemí v centru Ostravy</p>
             <div class="base-content">
                 <div class="base-info">
-                    <h3>Dispečink Ostrava - Mariánské Hory</h3>
+                    <h3>Provozovna Ostrava - Moravská Ostrava (od 1.10.2025)</h3>
                     <div class="base-location">
                         <span>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
-                            5 minut od centra
+                            <a href="https://maps.google.com/?q=Červeného+kříže+4,+702+00+Ostrava" target="_blank">
+                                Červeného kříže 4, 702 00 Ostrava
+                            </a>
+                        </span>
+                        <span>
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 3.096l-.102.104m-1.438 1.489l5.898-5.898a8.25 8.25 0 10-11.668 0l5.898 5.898m-.121.121a3.023 3.023 0 001.707 0"/>
+                            </svg>
+                            Aktuálně rekonstruujeme
                         </span>
                         <span>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                             300m od Městské nemocnice
-                        </span>
-                        <span>
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
-                            </svg>
-                            Parkování v okolí
                         </span>
                     </div>
                     
@@ -1551,45 +1762,66 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - UPDATED -->
     <section id="contact" class="scroll-animate">
         <div class="container">
             <h2 class="section-title">Neptejte se Googlu. Zeptejte se Jana.</h2>
             <p class="section-subtitle">Jsem tu pro vás 24/7, stejně jako naše centrála</p>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Kontaktní údaje</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
+                    <div class="contact-group">
+                        <h3>Kontakt</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <a href="tel:775035621" class="contact-link">775 035 621</a>
                         </div>
-                        <a href="tel:775035621" class="contact-link">775 035 621</a>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <a href="mailto:majitel@poctiva-flotila.cz" class="contact-link">majitel@poctiva-flotila.cz</a>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
+                    
+                    <div class="contact-group">
+                        <h3>Provozovna/Dispečink (od 1.10.2025)</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <a href="https://maps.google.com/?q=Červeného+kříže+4,+702+00+Ostrava" target="_blank" class="contact-link">
+                                Červeného kříže 4<br>702 00 Moravská Ostrava
+                            </a>
                         </div>
-                        <a href="mailto:majitel@poctiva-flotila.cz" class="contact-link">majitel@poctiva-flotila.cz</a>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
+                    
+                    <div class="contact-group">
+                        <h3>Sídlo firmy</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                            </div>
+                            <span>Janovského 2270/5<br>Ostrava 702 00</span>
                         </div>
-                        <span>Janovského 2270/5<br>Ostrava 702 00</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <span>IČO: 74479512</span>
                         </div>
-                        <span>IČO: 74479512</span>
                     </div>
                 </div>
                 <div class="map-container">
