@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poctivá flotila - Od řidiče pro řidiče | Jan Václavík</title>
-    <meta name="description" content="Jediná flotila, která vám připlácí! Bonus 500-1000 Kč týdně, účetnictví zdarma, zázemí 24/7 v Ostravě. Založeno řidičem Janem Václavíkem.">
+    <meta name="description" content="Jediná flotila, která vám připlácí! Bonus 500-1000 Kč týdně, účetnictví zdarma, zázemí v Ostravě. Založeno řidičem Janem Václavíkem.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,7 @@
         
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         body {
@@ -47,6 +48,7 @@
             overflow-x: hidden;
             line-height: 1.6;
             font-weight: 400;
+            max-width: 100vw;
         }
         
         /* Premium Loading Screen */
@@ -155,16 +157,31 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            z-index: 1001;
+            background: transparent;
+            border: none;
         }
         
         .hamburger span {
-            width: 25px;
-            height: 2px;
+            width: 28px;
+            height: 3px;
             background: var(--dark);
             margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
         }
         
         /* Hero Section with Premium Styling */
@@ -198,6 +215,7 @@
             padding: 0 2rem;
             z-index: 2;
             position: relative;
+            width: 100%;
         }
         
         .hero-content h1 {
@@ -208,6 +226,7 @@
             line-height: 1.15;
             font-weight: 700;
             letter-spacing: -1px;
+            word-wrap: break-word;
         }
         
         .hero-content h1 span {
@@ -335,9 +354,9 @@
             content: '';
             position: absolute;
             top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
+            right: -20%;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
@@ -346,9 +365,9 @@
             content: '';
             position: absolute;
             bottom: -50%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
+            left: -20%;
+            width: 250px;
+            height: 250px;
             background: radial-gradient(circle, rgba(255, 165, 0, 0.08) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite 2s;
         }
@@ -413,6 +432,9 @@
             text-align: center;
             animation: fadeInUp 1.2s ease;
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
         }
         
         .bonus-card:hover {
@@ -467,6 +489,19 @@
             font-style: italic;
         }
         
+        .bonus-guarantee {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 208, 132, 0.05);
+            border-left: 3px solid rgba(0, 208, 132, 0.3);
+            border-radius: 10px;
+        }
+        
+        .bonus-guarantee span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
         /* Section Base */
         section {
             padding: 6rem 0;
@@ -486,6 +521,7 @@
             font-weight: 700;
             color: var(--dark);
             letter-spacing: -0.5px;
+            word-wrap: break-word;
         }
         
         .section-subtitle {
@@ -607,7 +643,7 @@
         
         .difference-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
         
@@ -617,31 +653,14 @@
             border-radius: 20px;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             box-shadow: 0 5px 30px rgba(0,0,0,0.08);
             border: 1px solid rgba(0,0,0,0.05);
         }
         
         .diff-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-        }
-        
-        .diff-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gold-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .diff-card:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
         }
         
         .diff-icon {
@@ -666,6 +685,7 @@
             margin-bottom: 1rem;
             color: var(--dark);
             font-weight: 600;
+            word-wrap: break-word;
         }
         
         .diff-text {
@@ -865,6 +885,107 @@
             color: var(--gray);
             font-size: 0.9rem;
             line-height: 1.5;
+        }
+        
+        /* Poptávkový formulář */
+        #inquiry-form {
+            background: var(--white);
+            padding: 6rem 0;
+        }
+        
+        .inquiry-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .inquiry-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gold-gradient);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 20px;
+            padding-right: 3rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gold-gradient);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .form-note {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-style: italic;
         }
         
         /* Base Section */
@@ -1269,20 +1390,53 @@
         }
         
         /* Responsive */
+        @media (max-width: 1024px) {
+            .process-container,
+            .forms-container,
+            .base-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        
         @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
-                width: 100%;
-                background: var(--cream);
+                right: 0;
+                bottom: 0;
+                background: rgba(250, 248, 245, 0.98);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
                 padding: 2rem;
             }
             
             .nav-links.active {
-                display: flex;
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                font-size: 1.5rem;
             }
             
             .hamburger {
@@ -1293,21 +1447,87 @@
                 display: none;
             }
             
-            .about-content,
-            .process-container,
-            .forms-container,
-            .base-content,
-            .contact-container {
+            #hero {
+                padding-top: 100px;
+                padding-bottom: 3rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            #bonus-banner {
+                padding: 3rem 0;
+            }
+            
+            .bonus-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .bonus-amounts {
+                flex-direction: column;
+            }
+            
+            .bonus-card {
+                max-width: 100%;
+            }
+            
+            .about-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
+            }
+            
+            .about-image img {
+                height: 350px;
             }
             
             .difference-grid {
                 grid-template-columns: 1fr;
             }
             
-            .footer-content {
+            .diff-card {
+                padding: 2rem;
+            }
+            
+            .central-features {
                 grid-template-columns: 1fr;
+            }
+            
+            .base-gallery {
+                height: auto;
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item:first-child {
+                grid-column: span 1;
+            }
+            
+            .gallery-item img {
+                height: 200px;
+            }
+            
+            .inquiry-form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
+            
+            .footer-content {
                 text-align: center;
             }
             
@@ -1315,6 +1535,83 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                height: 35px;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .bonus-content {
+                padding: 1.5rem 1rem;
+            }
+            
+            #bonus-banner::before,
+            #bonus-banner::after {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .diff-card {
+                padding: 1.5rem;
+            }
+            
+            .diff-title {
+                font-size: 1.1rem;
+            }
+            
+            .central-overlay {
+                padding: 2rem;
+            }
+            
+            .central-card h3 {
+                font-size: 1.4rem;
+            }
+            
+            .step-card {
+                padding: 1.5rem;
+                padding-left: 3.5rem;
+            }
+            
+            .forms-group {
+                padding: 2rem 1.5rem;
+            }
+            
+            .forms-group h3 {
+                font-size: 1.3rem;
+            }
+            
+            .inquiry-form-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .contact-info {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -1329,19 +1626,19 @@
     <nav id="navbar">
         <div class="nav-container">
             <img src="https://imagedelivery.net/2OhTeUm5dT07PSQroFepFw/7aec50f2-039f-466a-bf88-816542f28700/public" alt="Poctivá flotila" class="logo">
-            <ul class="nav-links">
-                <li><a href="#hero">Domů</a></li>
-                <li><a href="#about">O mně</a></li>
-                <li><a href="#difference">Proč my</a></li>
-                <li><a href="#process">Jak to funguje</a></li>
-                <li><a href="#forms">Spolupráce</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" onclick="closeMenu()">Domů</a></li>
+                <li><a href="#about" onclick="closeMenu()">O mně</a></li>
+                <li><a href="#difference" onclick="closeMenu()">Proč my</a></li>
+                <li><a href="#process" onclick="closeMenu()">Jak to funguje</a></li>
+                <li><a href="#forms" onclick="closeMenu()">Spolupráce</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -1352,7 +1649,7 @@
             <h1>Od řidiče pro řidiče. <span>Bez keců, bez skrytých poplatků.</span></h1>
             <p class="hero-subtitle">Založil jsem Poctivou flotilu, protože vím, jak to chodí jinde. U nás dostanete férové podmínky a výplatu vždy včas.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">
+                <a href="#inquiry-form" class="btn btn-primary">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
@@ -1372,8 +1669,8 @@
                 <div class="stat-label">Výplat ročně</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Zázemí</div>
+                <div class="stat-number">Po-Pá</div>
+                <div class="stat-label">9-16 hod</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">100%</div>
@@ -1392,21 +1689,35 @@
                 <div class="bonus-amounts">
                     <div class="bonus-card">
                         <div class="bonus-amount">500 Kč</div>
-                        <div class="bonus-condition">týdně do 15 000 Kč obratu</div>
+                        <div class="bonus-condition">týdně do 10 000 Kč obratu</div>
                     </div>
                     <div class="bonus-card">
                         <div class="bonus-amount">1000 Kč</div>
-                        <div class="bonus-condition">týdně nad 15 000 Kč obratu</div>
+                        <div class="bonus-condition">týdně nad 10 000 Kč obratu</div>
                     </div>
                 </div>
                 
                 <div class="bonus-extra">
                     <div class="bonus-extra-title">ZA TENTO PAUŠÁL ZÍSKÁTE:</div>
                     <div class="bonus-extra-text">
-                        ✓ Kompletní účetnictví ZDARMA<br>
-                        ✓ Daňové přiznání ZDARMA<br>
-                        ✓ Veškerou administrativu<br>
-                        ✓ Dispečernu 24/7 (od 1.10.2025)
+                        <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; stroke: var(--green);" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg> Kompletní účetnictví ZDARMA<br>
+                        <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; stroke: var(--green);" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg> Daňové přiznání ZDARMA<br>
+                        <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; stroke: var(--green);" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg> Veškerou administrativu
+                    </div>
+                    
+                    <div class="bonus-guarantee">
+                        <span>
+                            <svg style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; fill: var(--green);" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                            Garantujeme stabilní odměnu po dobu 2 let. Jediná možná změna: navýšení v případě, že se staneme plátci DPH.
+                        </span>
                     </div>
                     
                     <div class="bonus-comparison">
@@ -1500,8 +1811,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
                 </div>
-                <h3 class="diff-title">Centrála 24/7 v centru Ostravy (od 1.10.2025)</h3>
-                <p class="diff-text">WC, kuchyňka, káva zdarma, pohovka, PC. Rekonstruujeme pro vás!</p>
+                <h3 class="diff-title">Centrála v centru Ostravy</h3>
+                <p class="diff-text">Po-Pá 9-16 hodin. Káva, WC, kuchyňka, PC, tiskárna. Vítkovická 8, Ostrava.</p>
             </div>
             <div class="diff-card">
                 <div class="diff-icon">
@@ -1533,20 +1844,20 @@
         <div class="process-container">
             <div class="central-card">
                 <div class="central-overlay">
-                    <h3>Naše centrála v Ostravě (od 1.10.2025)</h3>
+                    <h3>Naše centrála v Ostravě</h3>
                     <p style="color: var(--gold); margin-bottom: 1.5rem;">
                         <svg style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        Červeného kříže 4, Moravská Ostrava
+                        Vítkovická 8, Ostrava
                     </p>
                     <div class="central-features">
                         <div class="feature-item">
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            Otevřeno 24/7
+                            Po-Pá 9-16 hod
                         </div>
                         <div class="feature-item">
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1683,6 +1994,47 @@
     </div>
 </section>
 
+<!-- Inquiry Form Section -->
+<section id="inquiry-form" class="scroll-animate">
+    <div class="container">
+        <h2 class="section-title">Máte zájem? Napište nám!</h2>
+        <p class="section-subtitle">Vyplňte poptávkový formulář a my se vám ozveme</p>
+        <div class="inquiry-form-container">
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Jméno a příjmení *</label>
+                    <input type="text" id="name" name="name" required placeholder="Jan Novák">
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">Město *</label>
+                    <input type="text" id="city" name="city" required placeholder="Ostrava">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefon *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+420 777 888 999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="cooperation">Poptávaná forma spolupráce *</label>
+                    <select id="cooperation" name="cooperation" required>
+                        <option value="">-- Vyberte formu spolupráce --</option>
+                        <option value="HPP">HPP (Zaměstnanec)</option>
+                        <option value="DPP">DPP (Dohoda o provedení práce)</option>
+                        <option value="DPČ">DPČ (Dohoda o pracovní činnosti)</option>
+                        <option value="IČO">IČO (Podnikatel)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">Odeslat poptávku</button>
+                
+                <p class="form-note">* Povinné pole. Vaše údaje budou zpracovány v souladu s GDPR.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
     <!-- Base Section -->
     <section id="base" class="scroll-animate">
         <div class="container">
@@ -1690,28 +2042,22 @@
             <p class="section-subtitle">Přijďte se podívat do našeho zázemí v centru Ostravy</p>
             <div class="base-content">
                 <div class="base-info">
-                    <h3>Provozovna Ostrava - Moravská Ostrava (od 1.10.2025)</h3>
+                    <h3>Provozovna Ostrava - Moravská Ostrava</h3>
                     <div class="base-location">
                         <span>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
-                            <a href="https://maps.google.com/?q=Červeného+kříže+4,+702+00+Ostrava" target="_blank">
-                                Červeného kříže 4, 702 00 Ostrava
+                            <a href="https://www.google.com/maps/search/?api=1&query=Vítkovická+8,+Ostrava" target="_blank">
+                                Vítkovická 8, Ostrava
                             </a>
                         </span>
                         <span>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 3.096l-.102.104m-1.438 1.489l5.898-5.898a8.25 8.25 0 10-11.668 0l5.898 5.898m-.121.121a3.023 3.023 0 001.707 0"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            Aktuálně rekonstruujeme
-                        </span>
-                        <span>
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                            300m od Městské nemocnice
+                            Otevřeno Po-Pá 9:00-16:00
                         </span>
                     </div>
                     
@@ -1733,7 +2079,7 @@
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            Pracovní místo s PC
+                            Pracovní místo s PC a tiskárnou
                         </div>
                         <div class="base-feature">
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1745,7 +2091,7 @@
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            Kávu zdarma 24/7
+                            Kávu zdarma během otevírací doby
                         </div>
                     </div>
                 </div>
@@ -1768,7 +2114,7 @@
     <section id="contact" class="scroll-animate">
         <div class="container">
             <h2 class="section-title">Neptejte se Googlu. Zeptejte se Jana.</h2>
-            <p class="section-subtitle">Jsem tu pro vás 24/7, stejně jako naše centrála</p>
+            <p class="section-subtitle">Jsem tu pro vás Po-Pá 9:00-16:00, stejně jako naše centrála</p>
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-group">
@@ -1792,7 +2138,7 @@
                     </div>
                     
                     <div class="contact-group">
-                        <h3>Provozovna/Dispečink (od 1.10.2025)</h3>
+                        <h3>Provozovna</h3>
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -1800,9 +2146,17 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                             </div>
-                            <a href="https://maps.google.com/?q=Červeného+kříže+4,+702+00+Ostrava" target="_blank" class="contact-link">
-                                Červeného kříže 4<br>702 00 Moravská Ostrava
+                            <a href="https://www.google.com/maps/search/?api=1&query=Vítkovická+8,+Ostrava" target="_blank" class="contact-link">
+                                Vítkovická 8<br>Ostrava
                             </a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <span>Po-Pá 9:00-16:00</span>
                         </div>
                     </div>
                     
@@ -1827,7 +2181,7 @@
                     </div>
                 </div>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.380742893847!2d18.275130315716!3d49.831929099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e33ed426d705%3A0x8eef45841d1902c2!2sZ%C3%A1chrann%C3%BD%20t%C3%BDm%20%C4%8C%C4%8CK%20Ostrava%2C%20%C4%8Cerven%C3%A9ho%20k%C5%99%C3%AD%C5%BEe%204%2C%20702%2000%20Moravsk%C3%A1%20Ostrava%20a%20P%C5%99%C3%ADvoz!5e0!3m2!1scs!2scz!4v1620000000000!5m2!1scs!2scz" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.3774594285866!2d18.275587076556895!3d49.82983537149738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e334a6d2e687%3A0x7e8c4ee7c8c5e8c7!2sV%C3%ADtkovick%C3%A1%208%2C%20702%2000%20Ostrava!5e0!3m2!1scs!2scz!4v1234567890123!5m2!1scs!2scz" 
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
@@ -1848,7 +2202,7 @@
                     <div class="footer-contact">
                         <div class="footer-contact-item">
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                             <strong>775 035 621</strong>
                         </div>
@@ -1893,13 +2247,13 @@
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
-                            Zázemí 24/7 v Ostravě
+                            Zázemí v Ostravě Po-Pá
                         </li>
                         <li>
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v1a1 1 0 001 1h4a1 1 0 001-1v-1m3-2v-5a2 2 0 00-2-2H8a2 2 0 00-2 2v5h12zM12 6V4"/>
                             </svg>
-                            Dispečink s kavárnou
+                            Centrála s kavárnou
                         </li>
                     </ul>
                 </div>
@@ -1948,7 +2302,7 @@
                 <div>© 2024 Poctivá flotila - Jan Václavík. Všechna práva vyhrazena.</div>
                 <div class="mescon-credit">
                     Webové stránky od 
-                    <a href="https://www.mescon.cz/webove-stranky/" target="_blank" rel="noopener">
+                    <a href="https://www.mescon.cz/" target="_blank" rel="noopener">
                         <img src="https://imagedelivery.net/2OhTeUm5dT07PSQroFepFw/40be5d28-47ca-4830-fcae-0a3ee9e60200/public" 
                              alt="MESCON" class="mescon-logo">
                     </a>
@@ -1975,10 +2329,27 @@
             }
         });
 
-        // Mobile menu toggle
+        // Mobile menu toggle - IMPROVED
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
         // Smooth scroll for navigation links
@@ -1991,8 +2362,6 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    // Close mobile menu if open
-                    document.querySelector('.nav-links').classList.remove('active');
                 }
             });
         });
@@ -2062,15 +2431,25 @@
             }
         });
 
-        // Add hover effect to cards
-        document.querySelectorAll('.diff-card, .form-option, .step-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = this.style.transform + ' scale(1.02)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = this.style.transform.replace(' scale(1.02)', '');
-            });
-        });
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                city: formData.get('city'),
+                phone: formData.get('phone'),
+                cooperation: formData.get('cooperation')
+            };
+            
+            // Here you would normally send the data to your server
+            console.log('Form data:', data);
+            
+            // Show success message
+            alert('Děkujeme za váš zájem! Brzy se vám ozveme.');
+            event.target.reset();
+        }
     </script>
 </body>
 </html>
