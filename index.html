@@ -109,7 +109,7 @@
         }
         
         .logo {
-            height: 45px;
+            height: 50px;
             transition: transform 0.3s ease;
         }
         
@@ -152,36 +152,80 @@
         .nav-links a:hover::after {
             width: 100%;
         }
-        
-        .hamburger {
+
+        /* Mobile CTA Button */
+        .mobile-cta {
             display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1001;
-            background: transparent;
-            border: none;
         }
         
-        .hamburger span {
-            width: 28px;
-            height: 3px;
-            background: var(--dark);
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
+        /* Modal pro fotku mapy */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--white);
+            transform: rotate(90deg);
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         /* Hero Section with Premium Styling */
@@ -1116,6 +1160,57 @@
             padding: 0 2rem;
         }
         
+        .maps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .map-photo {
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            width: 100%;
+            height: 275px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .map-photo:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .map-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .map-photo:hover img {
+            transform: scale(1.02);
+        }
+        
+        .map-iframe {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            height: 275px;
+        }
+        
+        .map-iframe iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
         .contact-info {
             background: var(--white);
             padding: 3rem;
@@ -1188,20 +1283,7 @@
             color: var(--gold);
         }
         
-        .map-container {
-            background: var(--white);
-            padding: 1rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
-            height: 550px;
-        }
-        
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 15px;
-        }
+
         
         /* Footer - Premium Design */
         footer {
@@ -1396,7 +1478,11 @@
             .base-content,
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
+            }
+            
+            .maps-container {
+                order: -1;
             }
             
             .footer-content {
@@ -1427,20 +1513,94 @@
                 align-items: center;
                 gap: 2rem;
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 padding: 2rem;
+                z-index: 1001;
             }
             
             .nav-links.active {
                 transform: translateX(0);
             }
             
+            .nav-links li {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.4s ease;
+            }
+            
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-links.active li:nth-child(5) { transition-delay: 0.3s; }
+            .nav-links.active li:nth-child(6) { transition-delay: 0.35s; }
+            
             .nav-links a {
                 font-size: 1.5rem;
             }
             
-            .hamburger {
+            .mobile-cta {
                 display: flex;
+                width: 100%;
+                margin: 0;
+                align-items: center;
+                justify-content: flex-end;
+                padding-right: 1rem;
+            }
+            
+            .mobile-cta a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0 1.2rem;
+                height: 50px;
+                background: var(--gold-gradient);
+                color: var(--dark);
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+                transition: all 0.3s ease;
+                white-space: nowrap;
+            }
+            
+            .mobile-cta a:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            }
+            
+            .mobile-cta svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .maps-container {
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+            
+            .map-photo {
+                border-radius: 0;
+                box-shadow: none;
+                height: auto;
+                max-height: 90vh;
+            }
+            
+            .map-photo img {
+                object-fit: contain;
+                border-radius: 0;
+            }
+            
+            .map-iframe {
+                width: calc(100% - 4rem);
+                margin: 0 auto;
             }
             
             .hero-stats {
@@ -1523,8 +1683,8 @@
                 padding: 2rem 1.5rem;
             }
             
-            .map-container {
-                height: 350px;
+            .map-iframe {
+                height: 250px;
             }
             
             .footer-content {
@@ -1544,7 +1704,7 @@
             }
             
             .logo {
-                height: 35px;
+                height: 50px;
             }
             
             .hero-content {
@@ -1627,18 +1787,21 @@
         <div class="nav-container">
             <img src="https://imagedelivery.net/2OhTeUm5dT07PSQroFepFw/7aec50f2-039f-466a-bf88-816542f28700/public" alt="Poctivá flotila" class="logo">
             <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" onclick="closeMenu()">Domů</a></li>
-                <li><a href="#about" onclick="closeMenu()">O mně</a></li>
-                <li><a href="#difference" onclick="closeMenu()">Proč my</a></li>
-                <li><a href="#process" onclick="closeMenu()">Jak to funguje</a></li>
-                <li><a href="#forms" onclick="closeMenu()">Spolupráce</a></li>
-                <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
+                <li><a href="#hero">Domů</a></li>
+                <li><a href="#about">O mně</a></li>
+                <li><a href="#difference">Proč my</a></li>
+                <li><a href="#process">Jak to funguje</a></li>
+                <li><a href="#forms">Spolupráce</a></li>
+                <li><a href="#contact">Kontakt</a></li>
             </ul>
-            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="mobile-cta">
+                <a href="#inquiry-form">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Mám zájem!
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -2110,7 +2273,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - UPDATED -->
+    <!-- Contact Section -->
     <section id="contact" class="scroll-animate">
         <div class="container">
             <h2 class="section-title">Neptejte se Googlu. Zeptejte se Jana.</h2>
@@ -2180,10 +2343,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.3774594285866!2d18.275587076556895!3d49.82983537149738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e334a6d2e687%3A0x7e8c4ee7c8c5e8c7!2sV%C3%ADtkovick%C3%A1%208%2C%20702%2000%20Ostrava!5e0!3m2!1scs!2scz!4v1234567890123!5m2!1scs!2scz" 
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="maps-container">
+                    <div class="map-photo" id="mapPhoto">
+                        <img src="https://imagedelivery.net/2OhTeUm5dT07PSQroFepFw/44ea74bc-4713-4e04-cf5f-f63f33853500/public" alt="Mapa k provozovně">
+                    </div>
+                    <div class="map-iframe">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.3774594285866!2d18.275587076556895!3d49.82983537149738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e334a6d2e687%3A0x7e8c4ee7c8c5e8c7!2sV%C3%ADtkovick%C3%A1%208%2C%20702%2000%20Ostrava!5e0!3m2!1scs!2scz!4v1234567890123!5m2!1scs!2scz" 
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2311,7 +2479,52 @@
         </div>
     </footer>
 
+    <!-- Modal pro fotku mapy -->
+    <div class="modal" id="mapModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <img src="https://imagedelivery.net/2OhTeUm5dT07PSQroFepFw/44ea74bc-4713-4e04-cf5f-f63f33853500/public" alt="Mapa k provozovně - celá">
+        </div>
+    </div>
+
     <script>
+        // Modal pro fotku mapy
+        const mapPhoto = document.getElementById('mapPhoto');
+        const mapModal = document.getElementById('mapModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        if (mapPhoto) {
+            mapPhoto.addEventListener('click', function() {
+                mapModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        if (closeModal) {
+            closeModal.addEventListener('click', function() {
+                mapModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+        
+        // Zavřít modal při kliknutí mimo obrázek
+        if (mapModal) {
+            mapModal.addEventListener('click', function(e) {
+                if (e.target === mapModal) {
+                    mapModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+        
+        // Zavřít modal klávesou ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mapModal.classList.contains('active')) {
+                mapModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
         // Hide loading screen after page loads
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -2328,29 +2541,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // Mobile menu toggle - IMPROVED
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            if (navLinks.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-        
-        function closeMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-        }
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
